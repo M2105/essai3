@@ -1,0 +1,55 @@
+<?php
+//Déclaration des fonctions
+
+//$a=0;$b=0;$op= "";
+//$x=0;$y=0;
+function addition($a,$b){
+    return $a+$b;
+}
+function soustraction($a,$b){
+  return $a-$b;
+}
+function multiplication($a,$b){
+  return $a*$b;
+}
+function division($a,$b){
+  return $a/$b;
+}
+function operation($a,$b,$op){
+  return $op($a,$b);
+  }
+
+//echo($op);
+/*<label>op : <input type="text" name="op" id="z" value="<?php echo $z ?>"></label>*/
+?>
+<!doctype html>
+<html>
+<meta charset="utf-8">
+<head></head>
+<body>
+
+<fieldset>
+    <legend>fonction</legend>
+<form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
+<label>a : <input type="number" name="x" id="x" value="<?php echo 'x'?>"></label>
+<label>b : <input type="number" name="y" id="y" value="<?php echo 'y'?>"></label>
+  <select id="op" name="z">
+	<option value="addition">addition</option>
+	<option value="soustraction">soustraction</option>
+	<option value="multiplication">multiplication</option>
+	<option value="division">division</option>
+</select>
+<input type="submit" value="r">
+</form>
+</fieldset>
+</body>
+</html>
+<?php
+reset($_POST);
+if(isset($_POST)){
+ //var_dump($_POST);
+$a=$_POST['x'];$b=$_POST['y'];$op=$_POST['z'];
+//foreach ($operations as $op) {
+echo sprintf("%s de %d et %d : %1.2f",$op,$a,$b,operation($a,$b,$op))."<br>";
+}
+?>
